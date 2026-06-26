@@ -1,0 +1,12 @@
+package com.ecommerce.product.dto;
+
+import lombok.Data;
+
+@Data
+public class InventoryResponse {
+
+    private String id;
+    private String productId;
+    private Integer stock;
+
+}

@@ -8,6 +8,7 @@ public class ProductMapper {
 
     public static Product toEntity(ProductRequest request) {
         return Product.builder()
+                .productId(request.getProductId())
                 .name(request.getName())
                 .description(request.getDescription())
                 .price(request.getPrice())
@@ -17,6 +18,7 @@ public class ProductMapper {
     public static ProductResponse toResponse(Product product) {
         return ProductResponse.builder()
                 .id(product.getId())
+                .productId(product.getProductId())
                 .name(product.getName())
                 .description(product.getDescription())
                 .price(product.getPrice())

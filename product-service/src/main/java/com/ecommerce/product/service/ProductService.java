@@ -1,5 +1,7 @@
 package com.ecommerce.product.service;
 
+import com.ecommerce.product.client.InventoryClient;
+import com.ecommerce.product.dto.InventoryResponse;
 import com.ecommerce.product.dto.ProductRequest;
 import com.ecommerce.product.dto.ProductResponse;
 import com.ecommerce.product.entity.Product;
@@ -16,6 +18,7 @@ import java.util.stream.Collectors;
 public class ProductService {
 
     private final ProductRepository productRepository;
+    private final InventoryClient inventoryClient;
 
     public List<ProductResponse> getAllProducts() {
         return productRepository.findAll()
@@ -25,10 +28,18 @@ public class ProductService {
     }
 
     public ProductResponse getProductById(String id) {
+
         Product product = productRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Producto no encontrado"));
 
-        return ProductMapper.toResponse(product);
+        ProductResponse response = ProductMapper.toResponse(product);
+
+        InventoryResponse inventory =
+                inventoryClient.getInventory(product.getProductId());
+
+        response.setStock(inventory.getStock());
+
+        return response;
     }
 
     public ProductResponse createProduct(ProductRequest request) {

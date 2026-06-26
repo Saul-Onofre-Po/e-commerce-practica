@@ -9,11 +9,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.math.BigDecimal;
 
-/**
- * Entidad que representa un producto almacenado en MongoDB.
- * La anotación @Document indica que esta clase corresponde a una colección
- * llamada "products".
- */
 @Data
 @Builder
 @NoArgsConstructor
@@ -21,25 +16,16 @@ import java.math.BigDecimal;
 @Document(collection = "products")
 public class Product {
 
-    /**
-     * Identificador único del producto.
-     */
     @Id
     private String id;
 
-    /**
-     * Nombre del producto.
-     */
+    // Identificador que compartirá con inventory-service
+    private String productId;
+
     private String name;
 
-    /**
-     * Descripción del producto.
-     */
     private String description;
 
-    /**
-     * Precio del producto.
-     */
     private BigDecimal price;
 
 }
