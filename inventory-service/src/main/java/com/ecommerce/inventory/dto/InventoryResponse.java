@@ -1,20 +1,16 @@
-package com.ecommerce.inventory.entity;
+package com.ecommerce.inventory.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(collection = "inventory")
-public class Inventory {
+public class InventoryResponse {
 
-    @Id
     private String id;
 
     private String productId;
